@@ -2,7 +2,7 @@
  * Name:        pyed_main.c
  * Description: Console based Pinyin input method.
  * Author:      cosh.cage#hotmail.com
- * File ID:     0701251600A0701252004L00223
+ * File ID:     0701251600A0701252004L00225
  * License:     Public Domain.
  */
 #include <stdio.h>
@@ -156,13 +156,15 @@ int main()
 					do
 					{
 						size_t j;
-						
+						wchar_t cha[9];
 						up = down = 0;
 						for (j = 1; j <= 9; ++j)
 						{
 							if (pp - psel >= wcslen(psel) - 1)
 								break;
-							wprintf(L"%d: %lc\n", j, *pp++);
+							wprintf(L"%d: %lc\n", j, *pp);
+							cha[j - 1] = *pp;
+							++pp;
 						}			
 						if (pp > psel + 9)
 						{
@@ -193,7 +195,7 @@ int main()
 								goto Lbl_Quit;
 							}
 							*(wchar_t *)strLocateItemArrayZ(pbuf, sizeof(wchar_t), strLevelArrayZ(pbuf) - 1) = 0;
-							*(wchar_t *)strLocateItemArrayZ(pbuf, sizeof(wchar_t), strLevelArrayZ(pbuf) - 2) = *(pp - j + n);
+							*(wchar_t *)strLocateItemArrayZ(pbuf, sizeof(wchar_t), strLevelArrayZ(pbuf) - 2) = cha[n - 1];
 							wprintf(L"> %ls\n", (const wchar_t *)(pbuf->pdata));
 							
 							break;
