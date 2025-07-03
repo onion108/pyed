@@ -2,7 +2,7 @@
  * Name:        pyed_main.c
  * Description: Console based Pinyin input method.
  * Author:      cosh.cage#hotmail.com
- * File ID:     0701251600A0701252004L00225
+ * File ID:     0701251600A0703250930L00225
  * License:     Public Domain.
  */
 #include <stdio.h>
@@ -186,7 +186,7 @@ int main()
 						{
 							pp -= 18;
 						}
-						else if (n != down)
+						else if (n != down && n != 0)
 						{
 							if (NULL == strResizeBufferedArrayZ(pbuf, sizeof(wchar_t), +1))
 							{
